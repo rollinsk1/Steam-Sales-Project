@@ -6,7 +6,6 @@ import About from './Views/About'
 import TopSellers from './Views/TopSellers'
 import Contact from './Views/Contact'
 import './tailwind.css';
-import './twitter.css';
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import axios from 'axios'
 
