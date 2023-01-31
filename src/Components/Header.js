@@ -5,7 +5,7 @@ import Navigation from "./Navigation";
 function Header() {
     return(
         <header className="font-mono border-b p-3 flex justify-center">
-            <span className="font-extrabold font-mono ">
+            <span className="font-extrabold font-mono text-white">
                 AppName
             </span>
 

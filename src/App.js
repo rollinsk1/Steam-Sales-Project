@@ -15,7 +15,7 @@ function App() {
   const [ games, setGames ] = useState();
 
   useEffect(() => {
-    axios.get('https://www.cheapshark.com/api/1.0/games?title=Souls')
+    axios.get('https://www.cheapshark.com/api/1.0/games?title=mmo')
     .then(res => {
       const gamesArray = []
       for(let i = 0; i < res.data.length; i++) {
