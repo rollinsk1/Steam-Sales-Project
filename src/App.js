@@ -20,7 +20,7 @@ function App() {
       const gamesArray = []
       for(let i = 0; i < res.data.length; i++) {
         let gameName = res.data[i].external;
-        let gameThumb = res.data[i].thumb;
+        // let gameThumb = res.data[i].thumb;
         gamesArray.push(gameName)
         console.log(gameName)
       }
