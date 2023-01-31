@@ -17,14 +17,14 @@ function App() {
   useEffect(() => {
     axios.get('https://www.cheapshark.com/api/1.0/games?title=Souls')
     .then(res => {
-      const test = []
+      const gamesArray = []
       for(let i = 0; i < res.data.length; i++) {
         let gameName = res.data[i].external;
         let gameThumb = res.data[i].thumb;
-        test.push(gameName, gameThumb)
-        console.log(gameName, gameThumb)
+        gamesArray.push(gameName)
+        console.log(gameName)
       }
-      setGames(test)
+      setGames(gamesArray)
     })
     .catch(err => {
       console.log("Error!")
