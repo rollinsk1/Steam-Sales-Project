@@ -11,40 +11,37 @@ import axios from 'axios'
 
 
 function App() {
+  const [searchTerm, setSearchTerm] = useState("");
 
-  const [ games, setGames ] = useState();
+  const handleSearch = (term) => {
+    setSearchTerm(term);
+  };
+  const [games, setGames] = useState([]);
 
   useEffect(() => {
-    axios.get('https://www.cheapshark.com/api/1.0/games?title=mmo')
-    .then(res => {
-      const gamesArray = []
-      for(let i = 0; i < res.data.length; i++) {
-        let gameName = res.data[i].external;
-        // let gameThumb = res.data[i].thumb;
-        gamesArray.push(gameName)
-        console.log(gameName)
-      }
-      setGames(gamesArray)
-    })
-    .catch(err => {
-      console.log("Error!")
-      console.log(err)
-    })
-  }, [])
+    const fetchData = async () => {
+      const url = `https://www.cheapshark.com/api/1.0/games?title=${searchTerm}`
+      const result = await axios.get(url);
+      setGames(result.data);
+    };
+    fetchData();
+  }, [searchTerm]);
 
   return (
     <div>
       <BrowserRouter>
-       <Header />
+        <Header onSearch={handleSearch} />
 
-       <Routes>
-         <Route path="/" element={<Home />}/>
-         <Route path="/About" element={<About />}/>
-         <Route path="/Top_Sellers" element={<TopSellers games={games}/>}/>
-         <Route path="/Contact" element={<Contact />}/>
-       </Routes>
-       <Footer />
-
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/About" element={<About />} />
+          <Route
+            path="/Top_Sellers"
+            element={<TopSellers games={games} onSearch={handleSearch} />}
+          />
+          <Route path="/Contact" element={<Contact />} />
+        </Routes>
+        <Footer />
       </BrowserRouter>
     </div>
   )
